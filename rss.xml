@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title><![CDATA[notes]]></title>
+        <description><![CDATA[For my future me and maybe someone else.]]></description>
+        <link>http://tssk.github.io</link>
+        <generator>RSS for Node</generator>
+        <lastBuildDate>Tue, 24 Dec 2019 00:10:02 GMT</lastBuildDate>
+        <atom:link href="http://tssk.github.io/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[OpenWrt / Zyxel NSA325 v2]]></title>
+            <description><![CDATA[<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>notes</title>
+    <style type="text/css">
+        body {
+            margin: 40px auto;
+            max-width: 650px;
+            line-height: 1.6;
+            font-size: 16px;
+            color: #444;
+            padding: 0 10px;
+            background-color: #eee;
+        }
+
+        h1,
+        h2,
+        h3 {
+            line-height: 1.2
+        }
+    </style>
+</head>
+
+<body>
+
+<h1 id="openwrt-zyxel-nsa325">OpenWrt / Zyxel NSA325</h1>
+<ul>
+<li>hackable (serial console and linux support)</li>
+<li>2 bay for RAID1</li>
+</ul>
+<p>Official page - <a href="https://www.zyxel.com/support/SupportLandingSR.shtml?c=gb&amp;l=en&amp;kbid=M-01820&amp;md=NSA325%20v2">https://www.zyxel.com/support/SupportLandingSR.shtml?c=gb&amp;l=en&amp;kbid=M-01820&amp;md=NSA325%20v2</a></p>
+<p>Originally I had mainstream Debian (with custom kernel) booting from RAID array with OpenVault. But I decided to change to OpenWrt/LEDE as it is seems better for embedded devices to me.</p>
+<h2 id="nsa325-serial-connection">NSA325 | serial connection</h2>
+<p>( <a href="http://zyxel.nas-central.org/wiki/Debian_on_325#Serial_Cable">http://zyxel.nas-central.org/wiki/Debian_on_325#Serial_Cable</a> )</p>
+<pre><code>.
+          +----+----+
+          |    |    |
++----+----+----+----+----+
+|    | TX | RX |    | GND|
++----+----+----+    +----+</code></pre>
+<p>Remember to cross connect the TX and RX wires. The pin the NSA325 is transmitting on is the pin the USB cable is receiving on and vice versa.</p>
+<p><code>sudo screen /dev/ttyUSB0 115200</code></p>
+<h2 id="nsa325-upgrade-uboot">NSA325 | upgrade uboot</h2>
+<p>( <a href="https://www.cyrius.com/debian/kirkwood/sheevaplug/uboot-upgrade/">https://www.cyrius.com/debian/kirkwood/sheevaplug/uboot-upgrade/</a> )</p>
+<ul>
+<li>download uboot.2017.07-tld-1.nsa325.bodhi.tar ( <a href="https://forum.doozan.com/read.php?3,12381">https://forum.doozan.com/read.php?3,12381</a> )</li>
+<li>copy the U-Boot binary uboot.2017.07-tld-1.nsa325.mtd0.kwb to a USB stick formatted with the FAT filesystem</li>
+<li>plug the USB stick into your plug computer, connect the serial console and type the following commands</li>
+</ul>
+<pre><code>version
+usb start
+fatload usb 0:1 0x0800000 uboot.2017.07-tld-1.nsa325.mtd0.kwb
+nand erase 0x0 0x80000
+nand write 0x0800000 0x0 0x80000
+reset
+version</code></pre>
+<h2 id="nsa325-install-openwrtlede">NSA325 | install OpenWrt/LEDE</h2>
+<p>( <a href="https://forum.lede-project.org/t/installing-lede-on-nsa325/3611/2">https://forum.lede-project.org/t/installing-lede-on-nsa325/3611/2</a> )</p>
+<ul>
+<li>download uImage on flashdrive formatted with FAT32</li>
+</ul>
+<p><code>wget http://downloads.lede-project.org/snapshots/targets/kirkwood/generic/lede-kirkwood-nsa325-initramfs-uImage</code></p>
+<ul>
+<li>connect via serial console</li>
+</ul>
+<p><code>sudo screen /dev/ttyUSB0 115200</code></p>
+<ul>
+<li>insert flashdrive to one of back USB ports, turn on NSA325 and stop autobooting</li>
+<li>boot OpenWrt/LEDE image from flashdrive</li>
+</ul>
+<p><code>usb reset; fatload usb 0 0x800000 openwrt-kirkwood-nsa325-initramfs-uImage; bootm 0x800000</code></p>
+<ul>
+<li>press a key to enable console and install OpenWrt/LEDE to flash memory</li>
+</ul>
+<p><code>cd /tmp</code></p>
+<p><code>wget http://downloads.lede-project.org/snapshots/targets/kirkwood/generic/openwrt-kirkwood-nsa325-squashfs-sysupgrade.tar</code></p>
+<p><code>sysupgrade openwrt-kirkwood-nsa325-squashfs-sysupgrade.tar</code></p>
+
+
+
+</body>
+
+</html>
+]]></description>
+            <guid isPermaLink="false">OpenWrt / Zyxel NSA325 v2</guid>
+        </item>
+    </channel>
+</rss>
