@@ -4,7 +4,7 @@
         <description><![CDATA[For my future me and maybe someone else.]]></description>
         <link>https://tssk.github.io/</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Sat, 04 Jan 2020 20:46:56 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 04 Jan 2020 20:54:37 GMT</lastBuildDate>
         <atom:link href="https://tssk.github.io/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
             <title><![CDATA[OpenWrt / Zyxel NSA325]]></title>
@@ -91,7 +91,7 @@ version</code></pre>
 
 
 
-    <script src="/assets/anchor.min.js"></script>
+    <script src="/assets/anchor-4.2.2.min.js"></script>
     <script>
         anchors.add();
     </script>
