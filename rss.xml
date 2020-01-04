@@ -4,7 +4,7 @@
         <description><![CDATA[For my future me and maybe someone else.]]></description>
         <link>https://tssk.github.io/</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Tue, 24 Dec 2019 00:25:36 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 04 Jan 2020 20:46:56 GMT</lastBuildDate>
         <atom:link href="https://tssk.github.io/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
             <title><![CDATA[OpenWrt / Zyxel NSA325]]></title>
@@ -90,6 +90,11 @@ version</code></pre>
 <p><code>sysupgrade openwrt-kirkwood-nsa325-squashfs-sysupgrade.tar</code></p>
 
 
+
+    <script src="/assets/anchor.min.js"></script>
+    <script>
+        anchors.add();
+    </script>
 
 </body>
 
